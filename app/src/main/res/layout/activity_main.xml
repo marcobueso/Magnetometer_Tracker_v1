@@ -18,4 +18,15 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
+    <Button
+        android:id="@+id/b_takeMeasurement"
+        android:text="Record"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/tv_sensorDisplay"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="67dp"
+        android:layout_marginBottom="116dp"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>
