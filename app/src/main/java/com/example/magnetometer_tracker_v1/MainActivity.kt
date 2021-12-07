@@ -1,6 +1,7 @@
 package com.example.magnetometer_tracker_v1
 
 import android.content.Context
+import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -27,19 +28,32 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var sensorManager: SensorManager
     private lateinit var sensorDisplay: TextView
+    private lateinit var locationDisplay: TextView
     var buffer = mutableListOf(0)
+    var counter = 0
 
     // Implemented from SensorEventListener interface
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_MAGNETIC_FIELD) {
             val values = event.values
             println("------NEW VALUES READ-----")
-            var magnitude = sqrt( values[0].pow(2) + values[1].pow(2) +values[2].pow(2) )
+            val magnitude = sqrt( values[0].pow(2) + values[1].pow(2) +values[2].pow(2) )
             // Add value to buffer and remove oldest value
             buffer.add(magnitude.toInt())
             buffer.removeAt(0)
 
             sensorDisplay.text = "reading at 0,1,2: ${values[0].toInt()}, ${values[1].toInt()}, ${values[2].toInt()}"
+
+            if (counter % 50 == 0) {
+                if (magnitude > 25 && magnitude < 40) {
+                    locationDisplay.text = "INSIDE CLASSROOM"
+                    locationDisplay.setBackgroundColor(Color.parseColor("green"))
+                }
+                else {
+                    locationDisplay.text = "OUTSIDE CLASSROOM"
+                    locationDisplay.setBackgroundColor(Color.parseColor("red"))
+                }
+            }
 
         }
     }
@@ -62,7 +76,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         // To avoid dark mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         sensorDisplay = findViewById(R.id.tv_sensorDisplay)
-
+        locationDisplay = findViewById(R.id.tv_locationDisplay)
         // Initialize buffer to 100 elements (already has one)
         for (i in 0..98) {
             buffer.add(0)

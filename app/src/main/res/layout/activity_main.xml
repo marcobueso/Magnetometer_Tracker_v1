@@ -18,6 +18,17 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/tv_locationDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#6B6B6B"
+        android:gravity="center"
+        android:text="Classroom?"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+
     <Button
         android:id="@+id/b_takeMeasurement"
         android:text="Record"
