@@ -29,6 +29,18 @@
         android:textSize="30sp" />
 
 
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/tv_sensorDisplay"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="63dp"
+        android:background="#6B6B6B"
+        android:textColor="#FFFFFF"
+        android:text="WIFI RTT?"
+        android:gravity="center"/>
+
     <Button
         android:id="@+id/b_takeMeasurement"
         android:text="Record"
